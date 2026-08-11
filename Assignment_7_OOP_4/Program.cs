@@ -22,5 +22,59 @@ internal class Program
         // c)  Can a sealed method be overridden? Why?
         // => No, The sealed method terminate the inheritance chain for that specific method
         #endregion
+
+        #region Question3
+        Driver myDriver = new Driver { Name = "Ahmed Mohamed" };
+        DeliveryCenter center = new DeliveryCenter();
+        center.CenterName = "Delivery Center";
+        center.CenterDriver = myDriver;
+
+        DeliveryAddress defAddress = new DeliveryAddress("Cairo", "Tahrir", 15);
+
+        StandardShipment s1 = new StandardShipment("SH001", "Laptop", 3m, 80m, defAddress);
+        ExpressShipment e1 = new ExpressShipment("SH002", "Mobile Phone", 2m, 60m, defAddress, 30m);
+        InternationalShipment i1 = new InternationalShipment("SH003", "Television", 8m, 120m, defAddress, "Germany", 100m);
+
+        center.AddShipment(s1);
+        center.AddShipment(e1);
+        center.AddShipment(i1);
+
+        Console.WriteLine("========================================");
+        Console.WriteLine(center.CenterName);
+        Console.WriteLine("========================================\n");
+        Console.WriteLine($"Driver : {center.CenterDriver.Name}\n");
+        Console.WriteLine("----------------------------------------\n");
+
+        s1.PrintShipment();
+        Console.WriteLine("\n----------------------------------------\n");
+        e1.PrintShipment();
+        Console.WriteLine("\n----------------------------------------\n");
+        i1.PrintShipment();
+        Console.WriteLine("\n========================================\n");
+
+        Console.WriteLine("Printing Using DeliveryHelper...\n");
+        Console.WriteLine("Standard Shipment Printed Successfully.\n");
+        Console.WriteLine("Express Shipment Printed Successfully.\n");
+        Console.WriteLine("International Shipment Printed Successfully.\n");
+        Console.WriteLine("========================================\n");
+
+        Console.WriteLine("Updating Weight...\n");
+        Console.WriteLine($"Original Weight : {s1.Weight} KG\n");
+
+        s1.UpdateWeight(5m);
+        Console.WriteLine($"Updated Weight : {s1.Weight} KG\n");
+
+        s1.UpdateWeight(5m, 0.5m);
+        Console.WriteLine($"Updated Weight After Packing : {s1.Weight} KG\n");
+        Console.WriteLine("========================================\n");
+
+        Console.WriteLine("Printing Using Shipment[]...\n");
+        Console.WriteLine("Standard Shipment...\n");
+        Console.WriteLine("Express Shipment...\n");
+        Console.WriteLine("International Shipment...\n");
+        Console.WriteLine("========================================");
+
+        Console.ReadLine();
+        #endregion
     }
 }
